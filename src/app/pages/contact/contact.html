@@ -1,62 +1,48 @@
 <section class="contact">
   <div class="contact__header">
-    <h1>Contact us</h1>
-    <p>
-      Have a question, feedback, or just want to say hello?
-      Fill out the form below and we’ll get back to you as soon as we can.
-    </p>
+    <h1>{{ 'contact.title' | translate }}</h1>
+    <p>{{ 'contact.intro' | translate }}</p>
   </div>
 
-  <form class="contact__form" novalidate>
+  <form class="contact__form" novalidate (ngSubmit)="onSubmit()">
     <div class="contact__grid">
-      <label class="contact__field">
-        <span class="contact__label">Name</span>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your full name"
-          class="contact__input"
-        />
-      </label>
-
-      <label class="contact__field">
-        <span class="contact__label">Email</span>
-        <input
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          class="contact__input"
-        />
-      </label>
+      <ui-input
+        [label]="'contact.name' | translate"
+        [placeholder]="'contact.namePlaceholder' | translate"
+        type="text"
+        [(value)]="name"
+      />
+      <ui-input
+        [label]="'contact.email' | translate"
+        [placeholder]="'contact.emailPlaceholder' | translate"
+        type="email"
+        [(value)]="email"
+      />
     </div>
 
-    <label class="contact__field">
-      <span class="contact__label">Subject</span>
-      <input
-        type="text"
-        name="subject"
-        placeholder="How can we help?"
-        class="contact__input"
-      />
-    </label>
+    <ui-input
+      [label]="'contact.subject' | translate"
+      [placeholder]="'contact.subjectPlaceholder' | translate"
+      type="text"
+      [(value)]="subject"
+    />
 
     <label class="contact__field">
-      <span class="contact__label">Message</span>
+      <span class="contact__label">{{ 'contact.message' | translate }}</span>
       <textarea
         name="message"
         rows="4"
-        placeholder="Tell us a bit more about what you need..."
-        class="contact__input contact__input--textarea"
+        [placeholder]="'contact.messagePlaceholder' | translate"
+        class="contact__textarea"
+        [(ngModel)]="message"
       ></textarea>
     </label>
 
-    <button type="submit" class="contact__submit">
-      Send message
-    </button>
+    <ui-button (pressed)="onSubmit()">{{ 'contact.send' | translate }}</ui-button>
   </form>
 
   <div class="contact__meta">
-    <h2>Other ways to reach us</h2>
-    <p>Email: <a href="mailto:support@example.com">support@example.com</a></p>
+    <h2>{{ 'contact.otherWays' | translate }}</h2>
+    <p>{{ 'contact.emailLabel' | translate }} <a href="mailto:support@example.com">support@example.com</a></p>
   </div>
 </section>
