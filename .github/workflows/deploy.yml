@@ -7,15 +7,14 @@ on:
 
 jobs:
   deploy:
+    uses: fesleep-microfrontend-platform/github-workflows/.github/workflows/deploy-s3.yml@main
     permissions:
       id-token: write
       contents: read
       packages: read
-    uses: fesleep-microfrontend-platform/github-workflows/.github/workflows/deploy-s3.yml@main
     with:
       bucket_name: ${{ vars.BUCKET_NAME }}
       aws_region: ${{ vars.AWS_REGION }}
       app_name: ${{ vars.APP_NAME }}
       role_arn: ${{ vars.ROLE_ARN }}
-    secrets:
-      npm_token: NPM_GITHUB_TOKEN
+    secrets: inherit
